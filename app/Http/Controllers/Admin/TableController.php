@@ -10,6 +10,7 @@ use App\Table;
 use App\User;
 use App\Isitable;
 use App\Tbrole;
+use App\Menu;
 use Illuminate\Support\Facades\Auth;
 
 class TableController extends Controller
@@ -36,14 +37,22 @@ class TableController extends Controller
         $role = Auth::user()->id_role;
         $nama_database = Database::find($id);
         $input_text =  $request->text_search_table;
-        $table = Table::where('name','ilike','%'. $input_text . '%')->where('id_database',$id)->orderBy('name', 'asc')->paginate(5);
-        return view('admin.modul-table.isi_table-table',compact('table','nama_database','role','id_sim'));
+        $tables = Table::where('name','ilike','%'. $input_text . '%')->where('id_database',$id)->orderBy('name', 'asc')->paginate(5);
+        $dataProfiles = Menu::where('id_category', 1)->get();
+        $dataTransactions = Menu::where('id_category', 2)->get();
+        $dataWarehouses = Menu::where('id_category', 3)->get();
+        $dataMarts = Menu::where('id_category', 4)->get();
+        return view('admin.modul-table.isi_table-table',compact('tables','nama_database','role','id_sim','dataProfiles','dataTransactions','dataWarehouses','dataMarts'));
     }
 
     public function create_data($id)
     {
         $id_database = $id;
-        return view('admin.modul-table.isi_table-create',compact('id_database'));
+        $dataProfiles = Menu::where('id_category', 1)->get();
+        $dataTransactions = Menu::where('id_category', 2)->get();
+        $dataWarehouses = Menu::where('id_category', 3)->get();
+        $dataMarts = Menu::where('id_category', 4)->get();
+        return view('admin.modul-table.isi_table-create',compact('id_database','dataProfiles','dataTransactions','dataWarehouses','dataMarts'));
     }
 
     public function store_data(Request $request, $id)
@@ -111,7 +120,11 @@ class TableController extends Controller
     {
         $nama_table = Table::find($id);
         $isiData = Isitable::where('id_table',$id)->get();
-        return view('admin.modul-datatable.isi_data-table',compact('isiData','nama_table'));
+        $dataProfiles = Menu::where('id_category', 1)->get();
+        $dataTransactions = Menu::where('id_category', 2)->get();
+        $dataWarehouses = Menu::where('id_category', 3)->get();
+        $dataMarts = Menu::where('id_category', 4)->get();
+        return view('admin.modul-datatable.isi_data-table',compact('isiData','nama_table','dataProfiles','dataTransactions','dataWarehouses','dataMarts'));
     }
 
     /**

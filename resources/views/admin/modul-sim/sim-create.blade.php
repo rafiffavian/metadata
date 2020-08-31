@@ -11,7 +11,7 @@
         <!-- Text input-->
        
         <div class="form-group">
-        <label class="col-md-4 control-label" for="textinput">Nama User</label>  
+        <label class="col-md-4 control-label" for="textinput">Nama Sim</label>  
             <div class="col-md-4">
                 <input id="textinput" name="name" type="text" placeholder="Name" class="form-control input-md">
             </div>

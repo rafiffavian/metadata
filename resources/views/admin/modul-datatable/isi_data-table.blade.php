@@ -28,33 +28,35 @@
         <div class="box-body">
           <div class="row">
             <div class="col-md-12">
-              <table class="table table-striped table-bordered">
+              <table width="50%" class="table table-striped table-bordered">
                 <thead>
                   <tr>
-                    <th>Attribute</th>
+                    <th width="50px">Attribute</th>
                     <th>Definisi</th>
-                    <th>Standard Acuan</th>
+                    {{-- <th>Standard Acuan</th> --}}
+                    <th>Klasifikasi</th>
                     <th>Sinonim</th>
                     <th>Kodifikasi</th>
-                    <th>Jenis Data</th>
+                    {{-- <th>Jenis Data</th> --}}
                     <th>Keterangan</th>
-                    <th>Jenis Table</th>
-                    <th>Relasi</th>
+                    {{-- <th>Jenis Table</th> --}}
+                    {{-- <th>Relasi</th> --}}
                     <th>Action</th>
                   </tr>
                 </thead>
                 <tbody>
-              @foreach($isiData as $isiDatas)
+                @foreach($isiData as $data)
                   <tr>
-                    <td>{{$isiDatas->attribute}}</td>
-                    <td>{{$isiDatas->definisi}}</td>
-                    <td>{{$isiDatas->standard_acuan}}</td>
-                    <td>{{$isiDatas->kodifikasi}}</td>
-                    <td>{{$isiDatas->sinonim}}</td>
-                    <td>{{$isiDatas->jenis_data}}</td>
-                    <td>{{$isiDatas->keterangan}}</td>
-                    <td>{{$isiDatas->jenis_table}}</td>
-                    <td>{{$isiDatas->relasi}}</td>
+                    <td width="5px">{{$data->attribute}}</td>
+                    <td>{{$data->definisi}}</td>
+                    {{-- <td>{{$data->strandard_acuan}}</td> --}}
+                    <td>{{$data->strandard_acuan}}</td>
+                    <td>{{$data->sinonim}}</td>
+                    <td>{{$data->kodifikasi}}</td>
+                    {{-- <td>{{$data->jenis_data}}</td> --}}
+                    <td>{{$data->keterangan}}</td>
+                    {{-- <td>{{$data->jenis_table}}</td> --}}
+                    {{-- <td>{{$data->relasi}}</td> --}}
                     <td>
                         <a href=""><i class="fa fa-eye"></i></a>
                         <a href=""><i class="fa fa-pencil"></i></a>
@@ -65,7 +67,7 @@
                     </form>    
                     </td>
                   </tr>
-             @endforeach
+                @endforeach
                 </tbody>
               </table>
             </div>

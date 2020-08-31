@@ -16,7 +16,7 @@
         <a href="">
                  <img src="{{asset('img/back.png')}}" style="width: 30px; height: 30px;margin-top: 20px;" alt="">     
         </a>   <br><br>
-          <h3 style="text-align: center" class="box-title">{{$nama_database->name}} Permission</h3><br><br>
+          <h3 style="text-align: center" class="box-title">Table Permission</h3><br><br>
           <button type="submit" class="btn btn-primary" style="float:left; width:10%;">Tambah</button>                              
 
           <div class="box-tools pull-right">

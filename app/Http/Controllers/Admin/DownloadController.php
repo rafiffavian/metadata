@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Download;
 use App\Table;
+use App\Menu;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
 
@@ -17,13 +18,21 @@ class DownloadController extends Controller
         $id_table = $id;
         $nama_table = Table::find($id);
         $download = Download::where('id_table',$id)->get();
-        return view('admin.modul-download.download-table',compact('id_table','download','nama_table'));
+        $dataProfiles = Menu::where('id_category', 1)->get();
+        $dataTransactions = Menu::where('id_category', 2)->get();
+        $dataWarehouses = Menu::where('id_category', 3)->get();
+        $dataMarts = Menu::where('id_category', 4)->get();
+        return view('admin.modul-download.download-table',compact('id_table','download','nama_table','dataProfiles','dataTransactions','dataWarehouses','dataMarts'));
     }
 
     public function create($id)
     {
         $id_table = $id;
-        return view('admin.modul-download.download-create',compact('id_table'));
+        $dataProfiles = Menu::where('id_category', 1)->get();
+        $dataTransactions = Menu::where('id_category', 2)->get();
+        $dataWarehouses = Menu::where('id_category', 3)->get();
+        $dataMarts = Menu::where('id_category', 4)->get();
+        return view('admin.modul-download.download-create',compact('id_table','dataProfiles','dataTransactions','dataWarehouses','dataMarts'));
     }
 
     public function store(Request $request, $id)

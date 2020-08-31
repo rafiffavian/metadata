@@ -8,6 +8,7 @@ use App\Sim;
 use App\Database;
 use App\Simrole;
 use App\User;
+use App\Menu;
 use Illuminate\Support\Facades\Auth;
 
 class SimController extends Controller
@@ -44,23 +45,26 @@ class SimController extends Controller
 
     public static function checkPriv($id_sim,$id_role)
     {
-        if (Auth::user()->id_role == 1) {
+        dd(Auth::user()->id_role);
+        if (Auth::user()->myrole->name == 'Admin') {
             //for admin
             $simDatabase = Simrole::where([
                
-                'id_sim' => $id_sim
+                'id_sim' => $id_sim,
+                
                 
             ])->first();
             
         } else {
             $simDatabase = Simrole::where([
                
-                'id_sim' => 2,
+                'id_sim' => $id_sim,
                 'id_role' => Auth::user()->id_role //3
 
             ])->first();
         }
         // dd($dbDatabase->permission);
+       
         return $simDatabase;
     }
 
@@ -83,11 +87,18 @@ class SimController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+
+    
+
     public function show($id)
     {
-        $nama_database = Sim::find($id);
-        $database = Database::where('id_sim',$id)->orderBy('created_at', 'desc')->paginate(5);
-        return view('admin.modul-database.database-table',compact('database','nama_database'));
+        $nama_sim = Menu::find($id);
+        $databases = Database::where('id_sim',$id)->orderBy('created_at', 'desc')->paginate(5);
+        $dataProfiles = Menu::where('id_category', 1)->get();
+        $dataTransactions = Menu::where('id_category', 2)->get();
+        $dataWarehouses = Menu::where('id_category', 3)->get();
+        $dataMarts = Menu::where('id_category', 4)->get();
+        return view('admin.modul-database.database-table',compact('databases','nama_sim','dataProfiles','dataTransactions','dataWarehouses','dataMarts'));
 
     }
 

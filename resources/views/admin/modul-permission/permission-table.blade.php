@@ -35,6 +35,9 @@
                   <tr>
                     <th>Name</th>
                     <th>access</th>
+                    <th>create</th>
+                    <th>update</th>
+                    <th>delete</th>
                   
                   </tr>
                 </thead>
@@ -50,8 +53,14 @@
                     @endphp
                     @if ($result == null || $result->permission == 0) 
                         <td><input type="checkbox" name="permission[{{$sims->id}}]"  ></td>
+                        <td><input type="checkbox" name="create[{{$sims->id}}]"  ></td>
+                        <td><input type="checkbox" name="update[{{$sims->id}}]"  ></td>
+                        <td><input type="checkbox" name="delete[{{$sims->id}}]"  ></td>
                     @else
                         <td><input type="checkbox" name="permission[{{$sims->id}}]" @if ($result->permission == 1) checked  @endif></td>
+                        <td><input type="checkbox" name="create[{{$sims->id}}]" @if ($result->permission == 1) checked  @endif></td>
+                        <td><input type="checkbox" name="update[{{$sims->id}}]" @if ($result->permission == 1) checked  @endif></td>
+                        <td><input type="checkbox" name="delete[{{$sims->id}}]" @if ($result->permission == 1) checked  @endif></td>
                     @endif
                    
                   </tr>
@@ -59,6 +68,7 @@
               @endforeach   
                 </tbody>
               </table>
+              {{-- {{$sim->links()}} --}}
             </div>
           </div>
         </div>

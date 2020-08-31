@@ -16,6 +16,15 @@ Route::resource('/login','User\LoginController');
 
 Route::middleware(['auth'])->group(function(){
 
+    Route::get('/menu', 'MenuController@index')->name('admin.menu');
+    Route::post('/menu/store', 'MenuController@store')->name('menu.store');
+
+    Route::get('/index', 'RafifController@index');
+    Route::get('/profile-sim', 'RafifController@profile')->name('rafif.profile');
+    Route::get('/profile-layanan', 'RafifController@layanan')->name('rafif.layanan');
+    Route::get('/profile-warehouse', 'RafifController@warehouse')->name('rafif.warehouse');
+    Route::get('/profile-mart', 'RafifController@mart')->name('rafif.mart');
+
     Route::get('/dashboard/admin/user-table','Admin\AdminController@index')->name('admin.user.table');
     Route::get('/dashboard/admin/user-create','Admin\AdminController@create')->name('admin.user.create');
     Route::post('/dashboard/admin/user-store','Admin\AdminController@store')->name('admin.user.store');

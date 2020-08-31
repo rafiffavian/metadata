@@ -7,17 +7,23 @@ use Illuminate\Http\Request;
 use App\Sim;
 use App\Role;
 use App\Simrole;
+use App\Menu;
 use Illuminate\Support\Facades\Auth;
 
 class PermissionController extends Controller
 {
     public function index($id)
     {
+        $dataProfiles = Menu::where('id_category', 1)->get();
+        $dataTransactions = Menu::where('id_category', 2)->get();
+        $dataWarehouses = Menu::where('id_category', 3)->get();
+        $dataMarts = Menu::where('id_category', 4)->get(); 
         $id_role = $id;
         $nama_role = Role::find($id);
-        $sim = Sim::all();
+        $sim = Menu::all();
+        // dd($sim);
         $auth_id = Auth::user()->id;
-        return view('admin.modul-permission.permission-table', compact('sim', 'nama_role', 'id_role', 'auth_id'));
+        return view('admin.modul-permission.permission-table', compact('sim', 'nama_role', 'id_role', 'auth_id','dataProfiles','dataTransactions','dataWarehouses','dataMarts'));
     }
 
     public function store(Request $request, $id)

@@ -6,7 +6,7 @@
         <fieldset>
 
         <!-- Form Name -->
-        <legend>Form Create Table</legend>
+        <legend>Upload File</legend>
 
         <!-- Text input-->
         <input type="hidden" name="_method" value="put">

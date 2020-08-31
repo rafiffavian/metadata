@@ -15,7 +15,33 @@
         <div class="box-body">
           <div class="row">
             <div class="col-md-12">
-                {{Auth::user()->id_role}}
+                {{-- {{Auth::user()->id_role}} --}}
+                <div class="row">
+                    <div class="col-sm-7">
+                        <h3>Kelola Profile P3K</h3>
+                    </div> 
+                    <div class="col-sm-5">
+                        
+                    </div>   
+                </div> <br>   
+                {{-- <h3>Kelola Database {{$nama_database->name}}</h3> --}}
+                <div class="row">
+                    <div class="col-sm-7">
+                        <p>Sistem Informasi P3K merupakan sistem informasi yang menyediakan layanan database PNS, refrensi, dan sapk yang didalamnya, terdapat file metadata yang dapat di download dan digunakan</p>
+                        <a class="btn btn-primary" href="{{route('db.create.data',$nama_database->id)}}">Tambah Database</a>    
+                    </div>
+                    <div class="col-sm-5">
+                        <form action="{{route('post_index_db',$nama_database->id)}}" method="post">
+                            @csrf             
+                            <input type="hidden" name="_method" value="put">
+                            <div class="form-group">
+                                
+                                <input type="text" class="form-control" id="nama" placeholder="Search" aria-describedby="namaHelp" value="" name="text_search_db">
+                            </div>
+                            <button type="submit" class="btn btn-primary" style="float:right; width:25%;">Search</button>                              
+                        </form>
+                    </div>
+                </div><br>  
                 <h3>Kelola SIM</h3>
                 <div class="box-header with-border">
                     
@@ -42,11 +68,13 @@
                        @endphp 
                         <ul>
                             <li style="margin:20px 0;">
+                           
                               @if ($checkPriv->permission == '1' || Auth::user()->id_role == 1)
                                 <a href="{{route('sim.show',$sims->id)}}">{{$sims->name}}</a><br>
                               @else  
-                                <a href="">{{$sims->name}}</a><br>
-                              @endif  
+                                <a href="{{route('sim.index')}}">{{$sims->name}}</a><br>
+                              @endif
+                           
                                 <!--small><a data-toggle="modal" href="#editMk1">Edit</a>&nbsp;<a href=""></a></small-->
                                 <small><a href="/edit-matkul/sis-infor-akun">Edit</a>&nbsp;<a href=""></a></small>
                                 <small><a href="/edit-matkul/sis-infor-akun">Delete</a>&nbsp;<a href=""></a></small>

@@ -10,6 +10,7 @@ use App\Dbrole;
 use App\Table;
 use App\User;
 use App\Tbrole;
+use App\Menu;
 use Illuminate\Support\Facades\Auth;
 
 class DatabaseController extends Controller
@@ -19,6 +20,9 @@ class DatabaseController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    
+
     public function index()
     {
         //
@@ -28,10 +32,14 @@ class DatabaseController extends Controller
     {
 
         $role = Auth::user()->id_role;
-        $nama_database = Sim::find($id);
+        $nama_sim = Sim::find($id);
         $input_text =  $request->text_search_db;
-        $database = Database::where('name', 'ilike', '%' . $input_text . '%')->where('id_sim', $id)->orderBy('name', 'asc')->paginate(5);
-        return view('admin.modul-database.database-table', compact('database', 'nama_database','role'));
+        $databases = Database::where('name', 'ilike', '%' . $input_text . '%')->where('id_sim', $id)->orderBy('name', 'asc')->paginate(5);
+        $dataProfiles = Menu::where('id_category', 1)->get();
+        $dataTransactions = Menu::where('id_category', 2)->get();
+        $dataWarehouses = Menu::where('id_category', 3)->get();
+        $dataMarts = Menu::where('id_category', 4)->get();
+        return view('admin.modul-database.database-table', compact('databases', 'nama_sim','role','dataProfiles','dataTransactions','dataWarehouses','dataMarts'));
     }
 
     /**
@@ -42,7 +50,11 @@ class DatabaseController extends Controller
     public function create_data($id)
     {
         $id_sim = $id;
-        return view('admin.modul-database.database-create', compact('id_sim'));
+        $dataProfiles = Menu::where('id_category', 1)->get();
+        $dataTransactions = Menu::where('id_category', 2)->get();
+        $dataWarehouses = Menu::where('id_category', 3)->get();
+        $dataMarts = Menu::where('id_category', 4)->get();
+        return view('admin.modul-database.database-create', compact('id_sim','dataProfiles','dataTransactions','dataWarehouses','dataMarts'));
     }
 
     public static function checkPriv($id_sim,$id_database,$id_role)
@@ -106,8 +118,12 @@ class DatabaseController extends Controller
         $id_sim = Database::find($id)->id_sim;
         $role = Auth::user()->id_role;
         $nama_database = Database::find($id);
-        $table = Table::where('id_database', $id)->orderBy('name', 'asc')->paginate(5);
-        return view('admin.modul-table.isi_table-table', compact('table', 'nama_database','role','id_sim'));
+        $tables = Table::where('id_database', $id)->orderBy('name', 'asc')->paginate(5);
+        $dataProfiles = Menu::where('id_category', 1)->get();
+        $dataTransactions = Menu::where('id_category', 2)->get();
+        $dataWarehouses = Menu::where('id_category', 3)->get();
+        $dataMarts = Menu::where('id_category', 4)->get();
+        return view('admin.modul-table.isi_table-table', compact('tables', 'nama_database','role','id_sim','dataProfiles','dataTransactions','dataWarehouses','dataMarts'));
     }
 
     /**

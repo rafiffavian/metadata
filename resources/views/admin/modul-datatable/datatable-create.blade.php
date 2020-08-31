@@ -11,27 +11,39 @@
         <!-- Text input-->
         <input type="hidden" name="_method" value="put">
         <div class="form-group">
-        <label class="col-md-4 control-label" for="textinput">Name</label>  
+        <label class="col-md-4 control-label" for="textinput">Attribute</label>  
             <div class="col-md-4">
-                <input id="textinput" name="name" type="text" placeholder="Name" class="form-control input-md">
+                <input id="textinput" name="attribute" type="text" placeholder="Attribute" class="form-control input-md">
             </div>
         </div>
         <div class="form-group">
-        <label class="col-md-4 control-label" for="textinput">Null?</label>  
+        <label class="col-md-4 control-label" for="textinput">Definisi</label>  
             <div class="col-md-4">
-                <input id="textinput" name="null" type="text" placeholder="Null?" class="form-control input-md">
+                <input id="textinput" name="definisi" type="text" placeholder="Definisi" class="form-control input-md">
             </div>
         </div>
         <div class="form-group">
-        <label class="col-md-4 control-label" for="textinput">Type</label>  
+        <label class="col-md-4 control-label" for="textinput">Standard Acuan</label>  
             <div class="col-md-4">
-                <input id="textinput" name="type" type="text" placeholder="Type" class="form-control input-md">
+                <input id="textinput" name="standard_acuan" type="text" placeholder="Standard Acuan" class="form-control input-md">
             </div>
         </div>
         <div class="form-group">
-        <label class="col-md-4 control-label" for="textinput">Parameter</label>  
+        <label class="col-md-4 control-label" for="textinput">Sinonim</label>  
             <div class="col-md-4">
-                <input id="textinput" name="parameter" type="text" placeholder="Parameter" class="form-control input-md">
+                <input id="textinput" name="sinonim" type="text" placeholder="Sinonim" class="form-control input-md">
+            </div>
+        </div>
+        <div class="form-group">
+        <label class="col-md-4 control-label" for="textinput">Kodifikasi</label>  
+            <div class="col-md-4">
+                <input id="textinput" name="kodifikasi" type="text" placeholder="Kodifikasi" class="form-control input-md">
+            </div>
+        </div>
+        <div class="form-group">
+        <label class="col-md-4 control-label" for="textinput">Jenis Data</label>  
+            <div class="col-md-4">
+                <input id="textinput" name="jenis_data" type="text" placeholder="Jenis Data" class="form-control input-md">
             </div>
         </div>
         <div class="form-group">
@@ -41,9 +53,9 @@
             </div>
         </div>
         <div class="form-group">
-            <label class="col-md-4 control-label" for="textinput">Sample Data</label>  
+            <label class="col-md-4 control-label" for="textinput">Jenis Tabel</label>  
             <div class="col-md-4">
-                <textarea name="sampel_data" id="" cols="30" rows="10"></textarea>
+             <input id="textinput" name="jenis_table" type="text" placeholder="Jenis Tabel" class="form-control input-md">
             </div>
         </div>
        

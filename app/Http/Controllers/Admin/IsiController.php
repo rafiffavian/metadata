@@ -8,13 +8,18 @@ use App\Isitable;
 use Illuminate\Support\Facades\Auth;
 use App\Download;
 use App\Table;
+use App\Menu;
 
 class IsiController extends Controller
 {
     public function create($id)
     {
         $id_table = $id;
-        return view('admin.modul-datatable.datatable-create',compact('id_table'));
+        $dataProfiles = Menu::where('id_category', 1)->get();
+        $dataTransactions = Menu::where('id_category', 2)->get();
+        $dataWarehouses = Menu::where('id_category', 3)->get();
+        $dataMarts = Menu::where('id_category', 4)->get();
+        return view('admin.modul-datatable.datatable-create',compact('id_table','dataProfiles','dataTransactions','dataWarehouses','dataMarts'));
     }
 
     public function store(Request $request, $id)
@@ -31,7 +36,11 @@ class IsiController extends Controller
         $id_table = $id;
         $nama_table = Table::find($id);
         $download = Download::where('id_table',$id)->get();
-        return view('admin.modul-datatable.datatable-download',compact('id_table','download','nama_table'));
+        $dataProfiles = Menu::where('id_category', 1)->get();
+        $dataTransactions = Menu::where('id_category', 2)->get();
+        $dataWarehouses = Menu::where('id_category', 3)->get();
+        $dataMarts = Menu::where('id_category', 4)->get();
+        return view('admin.modul-datatable.datatable-download',compact('id_table','download','nama_table','dataProfiles','dataTransactions','dataWarehouses','dataMarts'));
     }
 
     public function back($id)
